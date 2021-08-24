@@ -1,7 +1,7 @@
 /*
 *Purpose : Create Address Book System using javascript
 */
-console.log("Welcome to The Address Book JS Program ") 
+console.log("Welcome to The Address Book Program ") 
 var prompt=require('prompt-sync')();
 
 let addressBookArray = new Array();
@@ -174,24 +174,45 @@ class Contact
          }
        }
     }
- 
- let choice = 0;
- do{
-    console.log("Press: \n1) Add Contact \n2) Edit Contact \n3) View Contact \n4)Exit:");
-    choice = Number(prompt("Enter your choice: "));
-    if(choice == 1){
-        addContact();
-    }
-    if(choice == 2){
-        if(addressBookArray.length==0){
-            console.log("No contacts in Addressbook.");
+    /**
+* To delete a person from address book 
+*/
+    function deleteContact() {
+        //checking contacts are there or not
+        if (addressBookArray.length == 0) {
+            console.log("No contacts in the list");
         }
-        let userData = prompt("Enter the contact firstname which you want to edit: ");
-        editContact(userData); 
+        //taking input from user
+        let name = prompt("Enter contact firstname you want to delete: ");
+        //finding the person contact in addressBook
+        let found = addressBookArray.find((contact) => contact.firstName == name);
+        if (found == undefined) {
+            console.log("No such contact in Addressbook.");
+        } else {
+            addressBookArray = addressBookArray.filter((contacts) => contacts.firstName != name);
+            console.log("Contact is deleted from Addressbook.")
+        }
     }
-    if(choice == 3){
-        for(let i = 0; i < addressBookArray.length; i++)
-            console.log(addressBookArray[i].toString(),"\n");
-    }
-    
- }while(choice != 4);
+ 
+    let choice = 0;
+    do {
+        console.log("Press: \n1) Add Contact \n2) Edit Contact \n3) View Contact \n4)Delete Contact\n5)Exit:");
+        choice = Number(prompt("Enter your choice: "));
+        if (choice == 1) {
+            addContact();
+        }
+        if (choice == 2) {
+            if (addressBookArray.length == 0) {
+                console.log("No contacts in Addressbook.");
+            }
+            let userData = prompt("Enter the contact firstname which you want to edit: ");
+            editContact(userData);
+        }
+        if (choice == 3) {
+            for (let i = 0; i < addressBookArray.length; i++)
+                console.log(addressBookArray[i].toString(), "\n");
+        }
+        if (choice == 4) {
+            deleteContact();
+        }
+    } while (choice != 5);
