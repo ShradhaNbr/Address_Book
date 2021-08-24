@@ -195,24 +195,27 @@ class Contact
     }
  
     let choice = 0;
-    do {
-        console.log("Press: \n1) Add Contact \n2) Edit Contact \n3) View Contact \n4)Delete Contact\n5)Exit:");
-        choice = Number(prompt("Enter your choice: "));
-        if (choice == 1) {
-            addContact();
+do {
+    console.log("Press: \n1) Add Contact \n2) Edit Contact \n3) View Contact \n4)Delete Contact\n5)Number Of Contacts\n6)Exit:");
+    choice = Number(prompt("Enter your choice: "));
+    if (choice == 1) {
+        addContact();
+    }
+    if (choice == 2) {
+        if (addressBookArray.length == 0) {
+            console.log("No contacts in Addressbook.");
         }
-        if (choice == 2) {
-            if (addressBookArray.length == 0) {
-                console.log("No contacts in Addressbook.");
-            }
-            let userData = prompt("Enter the contact firstname which you want to edit: ");
-            editContact(userData);
-        }
-        if (choice == 3) {
-            for (let i = 0; i < addressBookArray.length; i++)
-                console.log(addressBookArray[i].toString(), "\n");
-        }
-        if (choice == 4) {
-            deleteContact();
-        }
-    } while (choice != 5);
+        let userData = prompt("Enter the contact firstname which you want to edit: ");
+        editContact(userData);
+    }
+    if (choice == 3) {
+        for (let i = 0; i < addressBookArray.length; i++)
+            console.log(addressBookArray[i].toString(), "\n");
+    }
+    if (choice == 4) {
+        deleteContact();
+    }
+    if(choice == 5){
+        console.log("Number of Contacts are: "+addressBookArray.reduce(contact=>contact + 1, 0));
+    }
+} while (choice != 6);
