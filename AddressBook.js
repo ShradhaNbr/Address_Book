@@ -1,118 +1,197 @@
 /*
 *Purpose : Create Address Book System using javascript
 */
-console.log("Welcome to Address Book Service")
-class AddressBook {
+console.log("Welcome to The Address Book JS Program ") 
+var prompt=require('prompt-sync')();
 
-
-// constructor(firstName,lastName,address,city,state,zip,phoneNumber,email) 
-// {
-//     this.firstName = firstName;
-//     this.lastName = lastName;
-//     this.address = address;
-//     this.city = city;
-//     this.state = state;
-//     this.zip = zip;
-//     this.phoneNumber = phoneNumber;
-//     this.email = email;
-// }
-
-//Using getters and Setters
-get firstName() { return this.first_Name; }
-set firstName(firstName) {
-    let firstNameRegex = RegExp('^[A-Z]{1}[a-z]{3,}$');
-    if(firstNameRegex.test(firstName))
-    this.first_Name = firstName;
-    else throw 'First Name Should contain one upper case and minimum 3 characters';    
-}
-get lastName() { return this.last_Name; }
-set lastName(lastName) {
-    let lastNameRegex = RegExp('^[A-Z]{1}[a-z]{3,}$');
-    if(lastNameRegex.test(lastName))
-    this.last_Name = lastName;
-    else throw 'Last Name Should contain one upper case and minimum 3 characters';   
-}
-get address() { return this.address_; }
-set address(address) {
-    let addressRegex = RegExp('^[a-zA-Z0-9\\s\\-]{3,}$');
-    if(addressRegex.test(address))
-    this.address_ = address;
-    else throw 'Address should either be a letter or number with minimum 3 characters';   
-}
-get city() { return this.city_; }
-set city(city) {
-    let cityRegex = RegExp('^[a-zA-Z\\s\\-]{3,}$');
-    if(cityRegex.test(city))
-    this.city_ = city;
-    else throw 'City can have only letters with minimum 3 characters';   
-}
-get state() { return this.state_; }
-set state(state) {
-    let stateRegex = RegExp('^[a-zA-Z\\s\\-]{3,}$');
-    if(stateRegex.test(state))
-    this.state_ = state;
-    else throw 'State can have only letters with minimum 3 characters';   
-}
-get zip() { return this.zip_; }
-set zip(zip) {
-    let zipRegex = RegExp('^[0-9]{6}$');
-    if(zipRegex.test(zip))
-    this.zip_ = zip;
-    else throw 'Zip should have 6 digits number';   
-}
-get phoneNumber() { return this.phone_Number; }
-set phoneNumber(phoneNumber) {
-    let phoneRegex = RegExp('^[6-9]{1}[0-9]{9}$');
-    if(phoneRegex.test(phoneNumber))
-    this.phone_Number = phoneNumber;
-    else throw 'Phone number should have 10 digits numbers';   
-}
-get email() { return this.email_; }
-set email(email) {
-    let emailRegex = RegExp('^[a-z\\+\\-\\_\\.a-z0-9]{3,}\\@[a-z]*\\.[a-z]{1,3}$');
-    if(emailRegex.test(email))
-    this.email_ = email;
-    else throw 'Email should be in proper format';   
-}
-
-addContacts() {
-    try {
-        let firstName = prompt("Enter First Name : ");
-        this.firstName = firstName;
-        let lastName = prompt("Enter Last Name : ");
-        this.lastName = lastName;
-        let address = prompt("Enter Address : ");
-        this.address = address;
-        let city = prompt("Enter City : ");
-        this.city = city;
-        let state = prompt("Enter State : ");
-        this.state = state;
-        let zipcode = prompt("Enter Zip Code : ");
-        this.zipCode = zipcode;
-        let phoneNumber = prompt("Enter Phone Number : ");
-        this.phoneNumber = phoneNumber;
-        let email = prompt("Enter Email Id : ");
-        this.email = email;
-    }catch(e){
-        console.log(e);
-        return;
-    }   
-}
-}
-    
-const prompt = require('prompt-sync')();
 let addressBookArray = new Array();
-let choice;
-do {
-    console.log(" 1. Add Contacts 2.View contacts 3. Exit ");
-    choice = parseInt(prompt("Enter your choice"));
-    switch(choice) {
-        case 1 : let addressBook = new AddressBook();
-        addressBook.addContacts();
-        addressBookArray.push(addressBook);
-        break;
-    case 2: console.log(addressBookArray);
-        break;
-        case 3 : return ;
-        default : console.log("Invalid Input");
-} }while(choice != 3)
+
+
+//Creating class
+class Contact
+{
+    
+    
+    //Creating a method constructor 
+    constructor(firstName,lastName,address,city,state,zip,phoneNumber,email) 
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
+    //generating getters and setters and checking validation
+    get firstName() { return this._firstName;}
+    set firstName(firstName) {
+        let firstNameRegex = RegExp('^[A-Z]{1}[a-z]{3,}$');
+        if(firstNameRegex.test(firstName))
+            this._firstName = firstName;
+        else throw 'First Name Should contain one upper case and min 3 characters';    
+    }
+
+    get lastName() { return this._lastName;}
+    set lastName(lastName) {
+        let lastNAmeRegex = RegExp('^[A-Z]{1}[a-z]{3,}$');
+        if(lastNAmeRegex.test(lastName))
+            this._lastName = lastName;
+        else throw 'Last Name Should contain one upper case and min 3 characters';    
+    }
+
+    get address() { return this._address;}
+    set address(address) {
+        let addressRegex = RegExp('^[A-Za-z\\s\\-]{4,}$');
+        if(addressRegex.test(address))
+            this._address = address;
+        else throw 'Address Should contain at least 4 characters';    
+    }
+
+    get city() { return this._city;}
+    set city(city) {
+        let cityRegex = RegExp('^[A-Za-z]{4,}$');
+        if(cityRegex.test(city))
+            this._city = city;
+        else throw 'City Name Should contain at least 4 characters';    
+    }
+
+    get state() { return this._state;}
+    set state(state) {
+        let stateRegex = RegExp('^[A-Za-z]{4,}$');
+        if(stateRegex.test(state))
+            this._state = state;
+        else throw 'State Name Should contain at least 4 characters';  
+    }
+
+    get zip() { return this._zip;}
+    set zip(zip) {
+        let zipRegex = RegExp('^[0-9]{6}$');
+        if(zipRegex.test(zip))
+            this._zip = zip;
+        else throw 'Zip code Should contain exact 6 digits'; 
+    }
+
+    get phoneNo() { return this._phoneNo;}
+    set phoneNo(phoneNo) {
+        let phoneNoRegex = RegExp('^[6-9]{1}[0-9]{9}$');
+        if(phoneNoRegex.test(phoneNo))
+            this._phoneNo = phoneNo;
+        else throw 'Phone Number Should contain exact 10 digits'; 
+    }
+
+    get email() { return this._email;}
+    set email(email) {
+        let emailRegex = RegExp('^[a-z\\+\\-\\_\\.a-z0-9]{3,}\\@[a-z]*\\.[a-z]{1,3}$');
+        if(emailRegex.test(email))
+            this._email = email;
+        else throw 'Email should be in the proper format'; 
+    }
+
+    //to string method
+    toString(){
+        return "[ First Name: "+this.firstName+", Last Name: "+this.lastName+", Address: "+this.address+
+                ", City: "+this.city+", State: "+this.state+", Zip : "+this.zip+", Phone No: "+
+                this.phoneNo+", Email: "+this.email+" ]";
+
+    }
+}
+
+/**
+  * function  add contact used to add the contact details
+  * @returns 
+  */
+ function addContact(){
+     let firstName = prompt("Enter Firstname: ");
+     let lastName = prompt("Enter Lastname: ");
+     //checking name is already present or not
+     if(addressBookArray.find((contact)=>(contact.firstName+" "+contact.lastName)==(firstName+" "+lastName))){   
+         console.log("Given contact already present in addressbook.");
+         return;
+     }
+     let address = prompt("Enter Address: ");
+     let city = prompt("Enter City name: ");
+     let state = prompt("Enter State name: ");
+     let zip = prompt("Enter pincode: ");
+     let phoneNumber = prompt("Enter Phone number: ");
+     let emailId = prompt("Enter email id: ");
+     try{
+         let contact = new Contact(firstName,lastName,address,city,state,zip,phoneNumber,emailId);
+         addressBookArray.push(contact);
+         console.log("Contact is added. ");
+     }catch(Exception){
+         console.log(Exception);
+     }
+ }
+
+/**
+* To find person by name from address book array and edit the Contact 
+*/
+ function editContact(firstName){
+    let contact;
+    for(let i = 0; i < addressBookArray.length; i++){
+        if(addressBookArray[i].firstName === firstName)
+            contact = addressBookArray[i];
+        if(contact != null){
+            let input = 1;
+            while(input != 9){
+                console.log("\nChoose to edit: \n1. First Name \n2. Last Name \n3. Address \n4. City \n5. State");
+                console.log("6. Zipcode \n7. Phone Number \n8. Email \n9. View Edited Details & Exit");
+                input = prompt("Enter Your Choice: ");
+                input = parseInt(input);
+                switch (input) {
+                    case 1: let fname = prompt("Enter the firstname: ");
+                            contact.firstName = fname;
+                            break;
+                    case 2: let lname = prompt("Enter the last Name: ");
+                            contact.lastName = lname;
+                            break;
+                    case 3: let address_edit = prompt("Enter the address: ");
+                            contact.address = address_edit;
+                            break;
+                    case 4: let city_edit = prompt("Enter the city: ");
+                            contact.city = city_edit;
+                            break;
+                    case 5: let state_edit = prompt("Enter the state: ");
+                            contact.state = state_edit;
+                            break;
+                    case 6: let zip_edit = prompt("Enter the pincode: ");
+                            contact.zip = zip_edit;
+                            break;
+                    case 7: let phone_edit = prompt("Enter the phone number: ");
+                            contact.phoneNumber = phone_edit;
+                            break;
+                    case 8: let mail_edit = prompt("Enter the email: ");
+                            contact.email = mail_edit;
+                            break;
+                    case 9: console.log("\n",contact);
+                            break;
+                    default: console.log("Choose Correct Choice");
+                           
+                }
+            }
+         }
+       }
+    }
+ 
+ let choice = 0;
+ do{
+    console.log("Press: \n1) Add Contact \n2) Edit Contact \n3) View Contact \n4)Exit:");
+    choice = Number(prompt("Enter your choice: "));
+    if(choice == 1){
+        addContact();
+    }
+    if(choice == 2){
+        if(addressBookArray.length==0){
+            console.log("No contacts in Addressbook.");
+        }
+        let userData = prompt("Enter the contact firstname which you want to edit: ");
+        editContact(userData); 
+    }
+    if(choice == 3){
+        for(let i = 0; i < addressBookArray.length; i++)
+            console.log(addressBookArray[i].toString(),"\n");
+    }
+    
+ }while(choice != 4);
