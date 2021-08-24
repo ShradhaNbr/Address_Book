@@ -105,11 +105,11 @@ class Contact
  function addContact(){
      let firstName = prompt("Enter Firstname: ");
      let lastName = prompt("Enter Lastname: ");
-     //checking name is already present or not
-     if(addressBookArray.find((contact)=>(contact.firstName+" "+contact.lastName)==(firstName+" "+lastName))){   
-         console.log("Given contact already present in addressbook.");
-         return;
-     }
+     //checking the duplicate contact
+    if (addressBookArray.find((contact) => (contact.firstName + " " + contact.lastName) == (firstName + " " + lastName))) {
+        console.log("Contact already exits in addressbook.");
+        return;
+    }
      let address = prompt("Enter Address: ");
      let city = prompt("Enter City name: ");
      let state = prompt("Enter State name: ");
