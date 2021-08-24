@@ -34,38 +34,38 @@ set lastName(lastName) {
 }
 get address() { return this.address_; }
 set address(address) {
-    let addressRegex = RegExp('^[a-zA-Z0-9\\s\\-]{4,}$');
+    let addressRegex = RegExp('^[a-zA-Z0-9\\s\\-]{3,}$');
     if(addressRegex.test(address))
     this.address_ = address;
-    else throw 'Address should either be a letter or number';   
+    else throw 'Address should either be a letter or number with minimum 3 characters';   
 }
 get city() { return this.city_; }
 set city(city) {
-    let cityRegex = RegExp('^[a-zA-Z\\s\\-]{4,}$');
+    let cityRegex = RegExp('^[a-zA-Z\\s\\-]{3,}$');
     if(cityRegex.test(city))
     this.city_ = city;
-    else throw 'City can have only letters';   
+    else throw 'City can have only letters with minimum 3 characters';   
 }
 get state() { return this.state_; }
 set state(state) {
-    let stateRegex = RegExp('^[a-zA-Z\\s\\-]{4,}$');
+    let stateRegex = RegExp('^[a-zA-Z\\s\\-]{3,}$');
     if(stateRegex.test(state))
     this.state_ = state;
-    else throw 'State can have only letters';   
+    else throw 'State can have only letters with minimum 3 characters';   
 }
 get zip() { return this.zip_; }
 set zip(zip) {
     let zipRegex = RegExp('^[0-9]{6}$');
     if(zipRegex.test(zip))
     this.zip_ = zip;
-    else throw 'Zip can have only 6 digits number';   
+    else throw 'Zip should have 6 digits number';   
 }
 get phoneNumber() { return this.phone_Number; }
 set phoneNumber(phoneNumber) {
     let phoneRegex = RegExp('^[6-9]{1}[0-9]{9}$');
     if(phoneRegex.test(phoneNumber))
     this.phone_Number = phoneNumber;
-    else throw 'Phone number can have 10 digits numbers';   
+    else throw 'Phone number should have 10 digits numbers';   
 }
 get email() { return this.email_; }
 set email(email) {
@@ -105,7 +105,7 @@ let addressBookArray = new Array();
 let choice;
 do {
     console.log(" 1. Add Contacts 2.View contacts 3. Exit ");
-    choice = parseInt("Enter your choice");
+    choice = parseInt(prompt("Enter your choice"));
     switch(choice) {
         case 1 : let addressBook = new AddressBook();
         addressBook.addContacts();
